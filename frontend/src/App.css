@@ -12,6 +12,20 @@ body{
     background-color:rgb(0, 0, 0);
 }
 }
+.sidebar{
+  
+  color: #fff;
+  &::-webkit-scrollbar{
+    width: 7px;
+}
+&::-webkit-scrollbar-thumb{
+    background-color:  #00aaff;
+    border-radius: 10px;
+}
+&::-webkit-scrollbar-track{
+    background-color:rgb(0, 0, 0);
+}
+}
 
 .inputBox{
   display: flex;
@@ -58,3 +72,4 @@ body{
   margin-top: 10px;
   border-radius: 30px;
 }
+
