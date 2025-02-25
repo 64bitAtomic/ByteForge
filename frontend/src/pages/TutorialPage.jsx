@@ -157,7 +157,7 @@ const TutorialPage = () => {
     };
 
     fetchTutorials();
-  }, [language]);
+  }, [language, tutorial]);
 
   // Fetch markdown content
   useEffect(() => {

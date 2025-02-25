@@ -7,6 +7,7 @@ import Editor from "./pages/Editor";
 import TutorialPage from "./pages/TutorialPage";
 import IDE from "./pages/IDE";
 import Home from "./pages/Home";
+import ForgeCopilot from "./pages/ForgeCopilot";
 const App = () => {
   return (
     <>
@@ -35,6 +36,7 @@ const RouterHandler = () => {
         />
         <Route path="*" element={<NoPage />} />
         <Route path="/:language/:title" element={<TutorialPage />} />
+        <Route path="/ai" element={<ForgeCopilot />} />
       </Routes>
     </>
   );
