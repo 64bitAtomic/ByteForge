@@ -1,15 +1,40 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { AiOutlineSend } from "react-icons/ai";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { AiOutlineSend, AiOutlineCopy, AiOutlineCheck } from "react-icons/ai";
 import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { toast } from "react-toastify";
 
 const ForgeCopilot = () => {
   const [instruction, setInstruction] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [copiedIndex, setCopiedIndex] = useState(null);
 
+  const copyToClipboard = async (text, index) => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback for mobile: Create a hidden textarea
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      }
+
+      setCopiedIndex(index);
+      toast.success("Copied To ClipBoard");
+      setTimeout(() => setCopiedIndex(null), 2000);
+    } catch (error) {
+      console.error("Copy failed:", error);
+    }
+  };
   const generateCode = async () => {
     if (!instruction.trim()) return;
 
@@ -99,7 +124,16 @@ const ForgeCopilot = () => {
     <>
       <NavBar />
       <div className="flex flex-col h-screen bg-gray-900 text-white">
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        {/* <div
+          className="flex-1 p-6 space-y-4 m-4 overflow-y-auto
+  [&::-webkit-scrollbar]:w-2
+  [&::-webkit-scrollbar-track]:rounded-full
+  [&::-webkit-scrollbar-track]:bg-gray-100
+  [&::-webkit-scrollbar-thumb]:rounded-full
+  [&::-webkit-scrollbar-thumb]:bg-gray-300
+  dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
+        >
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -138,23 +172,109 @@ const ForgeCopilot = () => {
               </div>
             </div>
           )}
+        </div> */}
+
+        <div
+          className="flex-1 p-6 space-y-4 m-4 overflow-y-auto max-h-[75vh] sm:max-h-[85vh] scrollbar-none
+                 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-700 
+                 bg-[#0d1117] border border-gray-700 rounded-xl shadow-lg"
+        >
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              className={`flex ${
+                msg.role === "user"
+                  ? "justify-end sm:justify-end"
+                  : "justify-start sm:justify-start"
+              }`}
+            >
+              <div
+                className={`relative w-fit  p-4 rounded-lg max-w-3xl text-sm sm:text-base transition-all 
+                        ${
+                          msg.role === "user"
+                            ? "bg-blue-600 text-white self-end"
+                            : "bg-gray-800 text-gray-200 self-start"
+                        }`}
+              >
+                {msg.role === "bot" ? (
+                  <div className="prose prose-invert ">
+                    <SyntaxHighlighter
+                      className="scrollbar-none w-[280px] sm:w-full max-w-full
+                       text-xs sm:text-sm md:text-base p-2 sm:p-4 !overflow-x-auto sm:flex-wrap"
+                      language="markdown"
+                      style={dracula}
+                      wrapLongLines
+                    >
+                      {msg.content}
+                    </SyntaxHighlighter>
+                  </div>
+                ) : (
+                  <p>{msg.content}</p>
+                )}
+
+                {/* Copy Button (Only for Bot Messages) */}
+                {msg.role === "bot" && (
+                  <button
+                    className="copy-btn absolute top-2 right-2 text-white hover:text-white p-1 rounded-md 
+                            transition-all bg-green-600 hover:bg-green-900 active:scale-90 
+                            z-10 pointer-events-auto"
+                    onClick={() => copyToClipboard(msg.content, index)}
+                  >
+                    {copiedIndex === index ? (
+                      <AiOutlineCheck className="w-5 h-5" />
+                    ) : (
+                      <AiOutlineCopy className="w-5 h-5" />
+                    )}
+                    {/* <AiOutlineCopy className="w-5 h-5" /> */}
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
+
+          {/* Loading Indicator */}
+          {loading && (
+            <div className="flex justify-start">
+              <div className="p-4 rounded-lg bg-gray-700 text-gray-300 animate-pulse">
+                Generating...
+              </div>
+            </div>
+          )}
+
+          {/* Error Message */}
+          {error && (
+            <div className="flex justify-start">
+              <div className="p-4 rounded-lg bg-red-600 text-white">
+                {error}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Input Box */}
-        <div className="p-4 bg-gray-800 border-t border-gray-700 flex items-center">
+        <div className="p-6 sm:p-9 m-4 sm:m-12 rounded-2xl my-auto bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 shadow-lg flex flex-col sm:flex-row items-center gap-4">
           <textarea
-            className="flex-1 p-3 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            className="scro w-full flex-1 p-2 bg-gray-700 text-white rounded-lg border border-gray-600 
+               focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none 
+               placeholder-gray-400 transition-all duration-300 scrollbar-none"
             rows="2"
             placeholder="Ask something..."
             value={instruction}
             onChange={(e) => setInstruction(e.target.value)}
           ></textarea>
+
           <button
-            className="ml-4 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg transition duration-200"
+            className={`flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 
+              hover:from-blue-600 hover:to-purple-700 text-white font-semibold 
+              px-6 py-3 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 
+              transform hover:scale-105 active:scale-95 
+              disabled:opacity-50 disabled:cursor-not-allowed 
+              w-full sm:w-auto`}
             onClick={generateCode}
             disabled={loading}
           >
-            <AiOutlineSend className="w-5 h-5" />
+            <AiOutlineSend className="w-6 h-6" />
+            <span>Send</span>
           </button>
         </div>
       </div>
