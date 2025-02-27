@@ -4,6 +4,7 @@ import Select from "react-select";
 import { api_base_url } from "../helper";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Footer from "../components/Footer";
 
 const IDE = () => {
   const [isCreateModelShow, setIsCreateModelShow] = useState(false);
@@ -392,6 +393,7 @@ const IDE = () => {
           ""
         )}
       </div>
+      <Footer />
     </>
   );
 };
