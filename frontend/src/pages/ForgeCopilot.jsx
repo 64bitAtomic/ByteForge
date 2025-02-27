@@ -2,7 +2,12 @@ import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { AiOutlineSend, AiOutlineCopy, AiOutlineCheck } from "react-icons/ai";
+import {
+  AiOutlineSend,
+  AiOutlineCopy,
+  AiOutlineCheck,
+  AiOutlineRobot,
+} from "react-icons/ai";
 import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
@@ -70,6 +75,7 @@ const ForgeCopilot = () => {
 
       // const data = await response.json();
 
+      await new Promise((resolve) => setTimeout(resolve, 20000));
       const data = {
         openai: {
           generated_text:
@@ -107,6 +113,7 @@ const ForgeCopilot = () => {
           cost: 0.0034900000000000005,
         },
       };
+
       const botMessage = {
         role: "bot",
         content: data.openai?.generated_text || "No response received.",
@@ -198,6 +205,13 @@ const ForgeCopilot = () => {
               >
                 {msg.role === "bot" ? (
                   <div className="prose prose-invert ">
+                    <spna
+                      className="w-6 h-6 rounded-full 
+                inline-flex items-center justify-center 
+                bg-white"
+                    >
+                      <AiOutlineRobot className="text-gray-700" />
+                    </spna>
                     <SyntaxHighlighter
                       className="scrollbar-none w-[280px] sm:w-full max-w-full
                        text-xs sm:text-sm md:text-base p-2 sm:p-4 !overflow-x-auto sm:flex-wrap"
@@ -235,8 +249,13 @@ const ForgeCopilot = () => {
           {/* Loading Indicator */}
           {loading && (
             <div className="flex justify-start">
-              <div className="p-4 rounded-lg bg-gray-700 text-gray-300 animate-pulse">
-                Generating...
+              <div className="p-4 flex items-center rounded-lg bg-gray-700 text-gray-300 animate-pulse ">
+                Generating
+                <div className="flex justify-start ml-1">
+                  <div className="h-3 w-3 bg-red-300 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                  <div className="h-3 w-3 bg-blue-300 rounded-full animate-bounce [animation-delay:-0.15s] mx-1"></div>
+                  <div className="h-3 w-3 bg-green-300 rounded-full animate-bounce"></div>
+                </div>
               </div>
             </div>
           )}

@@ -70,6 +70,7 @@ import {
   SiC,
   SiGnubash,
 } from "react-icons/si";
+import { GiArtificialIntelligence } from "react-icons/gi";
 import { FaJava } from "react-icons/fa";
 
 const Hero = () => {
@@ -94,11 +95,12 @@ const Hero = () => {
 
       {/* Heading with Fade-in Effect */}
       <h1
-        className={`text-3xl md:text-5xl font-bold mb-4 transition-opacity duration-1000 ${
+        className={`text-3xl flex md:text-5xl font-bold mb-4 transition-opacity duration-1000 ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
       >
         Code. Learn. Innovate.
+        <GiArtificialIntelligence className="text-purple-400 hover:scale-110 transition-transform" />
       </h1>
 
       {/* Subheading with Slide-in Effect */}
@@ -108,7 +110,8 @@ const Hero = () => {
         }`}
       >
         Master programming with structured tutorials and a multi-code IDE. Learn
-        and practice
+        ,<span className="text-purple-400 font-semibold"> AI</span>-powered
+        assistance, and practice
         <span className="text-blue-400 font-semibold"> Python</span>,
         <span className="text-red-400 font-semibold"> Java</span>,
         <span className="text-yellow-400 font-semibold"> JavaScript</span>,
