@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import NavBar from "../components/Navbar";
 import Select from "react-select";
 import { api_base_url } from "../helper";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Footer from "../components/Footer";
+import NavBar from "../components/NavBar";
 
 const IDE = () => {
   const [isCreateModelShow, setIsCreateModelShow] = useState(false);
@@ -124,6 +124,7 @@ const IDE = () => {
       })
       .catch((err) => {
         toast.error("Something went wrong");
+        console.log(err);
       });
   };
   useEffect(() => {
