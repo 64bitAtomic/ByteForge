@@ -186,6 +186,11 @@ const ForgeCopilot = () => {
                  scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-700 
                  bg-[#0d1117] border border-gray-700 rounded-xl shadow-lg"
         >
+          {messages.length === 0 && !loading && !error && (
+            <div className="flex justify-center items-center h-full text-gray-400 sm:text-4xl text-2xl animate-pulse">
+              🤖 What can I help you with?
+            </div>
+          )}
           {messages.map((msg, index) => (
             <div
               key={index}

@@ -54,7 +54,7 @@ const Sidebar = ({ isOpen, toggleMenu }) => {
     <>
       {/* Sidebar */}
       <div
-        className={`sidebar fixed top-0 left-0 h-full w-[250px] bg-[#1a1a1a] shadow-lg z-50 transform transition-transform duration-300
+        className={`sidebar fixed top-0 left-0 h-full w-[260px] bg-[#1a1a1a] shadow-lg z-50 transform transition-transform duration-300
     ${
       isOpen ? "translate-x-0" : "-translate-x-full"
     } overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900`}
@@ -64,7 +64,7 @@ const Sidebar = ({ isOpen, toggleMenu }) => {
           src={logo}
           alt="Logo"
         />
-        <button
+        {/* <button
           onClick={() => {
             localStorage.removeItem("token");
             localStorage.removeItem("isLoggedIn");
@@ -74,6 +74,27 @@ const Sidebar = ({ isOpen, toggleMenu }) => {
         >
           <FiLogOut size={20} />
           Logout
+        </button> */}
+        <button
+          onClick={() => {
+            localStorage.removeItem("token");
+            localStorage.removeItem("isLoggedIn");
+            window.location.reload();
+          }}
+          className="flex m-4 mx-16 items-center gap-3 px-4 py-2 rounded-lg transition-all duration-300 
+             bg-red-500 text-white font-semibold tracking-wide shadow-md 
+             hover:bg-red-600 hover:shadow-lg hover:scale-105"
+        >
+          {/* Logout Icon with Hover Effect */}
+          <FiLogOut
+            className="w-6 h-6 text-white transition-transform 
+               group-hover:scale-110 duration-300"
+          />
+
+          {/* Logout Text with Gradient Effect */}
+          <span className="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+            Logout
+          </span>
         </button>
 
         <ul className="flex flex-col gap-2 text-left px-4">
@@ -150,14 +171,24 @@ const Sidebar = ({ isOpen, toggleMenu }) => {
           </li>
 
           {/*Tutorials List*/}
-          <Tutorials
+          {/* <Tutorials
             setIsDropdownOpen={setIsDropdownOpen}
             isDropdownOpen={isDropdownOpen}
             tutorials={tutorials}
             toggleTopic={toggleTopic}
             expandedTopics={expandedTopics}
             toggleMenu={toggleMenu}
-          />
+          /> */}
+          <div className="overflow-y-auto max-h-[calc(100vh-200px)] scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900">
+            <Tutorials
+              setIsDropdownOpen={setIsDropdownOpen}
+              isDropdownOpen={isDropdownOpen}
+              tutorials={tutorials}
+              toggleTopic={toggleTopic}
+              expandedTopics={expandedTopics}
+              toggleMenu={toggleMenu}
+            />
+          </div>
 
           {/* AI */}
           <li>

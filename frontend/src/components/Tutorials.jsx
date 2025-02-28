@@ -121,13 +121,18 @@ const Tutorials = ({
       </button>
 
       {/* Tutorials List */}
-      <ul
+      {/* <ul
         className={`pl-5 text-sm transition-all duration-500 overflow-hidden space-y-2
               ${
                 isDropdownOpen
                   ? "max-h-[500px] opacity-100"
                   : "max-h-0 opacity-0"
               }`}
+      > */}
+      <ul
+        className={`pl-5 text-sm transition-all duration-500 space-y-2 
+    ${isDropdownOpen ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"} 
+    overflow-y-auto scrollbar-none`}
       >
         {tutorials.map((tut) => (
           <li key={tut._id} className="mt-2">

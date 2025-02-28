@@ -193,7 +193,7 @@ const IDE = () => {
   return (
     <>
       <NavBar />
-      <div className="p-2 md:ml-[20px] transition-all md:mr-[20px]">
+      <div className="p-2 md:ml-[20px] transition-all md:mr-[20px] bg-gray-900">
         <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-4">
           <h3 className="username text-2xl sm:text-left ">
             👋Hi, Mohammad Zaid KHan
@@ -208,103 +208,128 @@ const IDE = () => {
           </div>
         </div>
         <div className="projects mt-5 space-y-4 pb-10">
-          {projects && projects.length > 0
-            ? projects.map((project, index) => {
-                return (
-                  <>
+          {projects && projects.length > 0 ? (
+            projects.map((project, index) => {
+              return (
+                <>
+                  <div
+                    key={index}
+                    className="project p-4 flex flex-col sm:flex-row items-center sm:justify-between bg-[#0f0e0e] rounded-lg shadow-lg "
+                  >
                     <div
-                      key={index}
-                      className="project p-4 flex flex-col sm:flex-row items-center sm:justify-between bg-[#0f0e0e] rounded-lg shadow-lg"
+                      onClick={() => {
+                        navigate("/editor/" + project._id);
+                      }}
+                      className="flex w-full items-center gap-4 text-center sm:text-left"
                     >
-                      <div
-                        onClick={() => {
-                          navigate("/editor/" + project._id);
-                        }}
-                        className="flex w-full items-center gap-4 text-center sm:text-left"
-                      >
-                        {project.projLanguage === "python" ? (
-                          <>
-                            <img
-                              className="w-[130px] h-[100px] object-cover"
-                              src="https://images.ctfassets.net/em6l9zw4tzag/oVfiswjNH7DuCb7qGEBPK/b391db3a1d0d3290b96ce7f6aacb32b0/python.png"
-                              alt=""
-                            />
-                          </>
-                        ) : project.projLanguage === "javascript" ? (
-                          <>
-                            <img
-                              className="w-[130px] h-[100px] object-cover"
-                              src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
-                              alt=""
-                            />
-                          </>
-                        ) : project.projLanguage === "cpp" ? (
-                          <>
-                            <img
-                              className="w-[130px] h-[100px] object-cover"
-                              src="https://upload.wikimedia.org/wikipedia/commons/3/32/C%2B%2B_logo.png"
-                              alt=""
-                            />
-                          </>
-                        ) : project.projLanguage === "c" ? (
-                          <>
-                            <img
-                              className="w-[130px] h-[100px] object-cover"
-                              src="https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png"
-                              alt=""
-                            />
-                          </>
-                        ) : project.projLanguage === "java" ? (
-                          <>
-                            <img
-                              className="w-[130px] h-[100px] object-cover"
-                              src="https://static-00.iconduck.com/assets.00/java-icon-1511x2048-6ikx8301.png"
-                              alt=""
-                            />
-                          </>
-                        ) : project.projLanguage === "bash" ? (
-                          <>
-                            <img
-                              className="w-[130px] h-[100px] object-cover"
-                              src="https://w7.pngwing.com/pngs/48/567/png-transparent-bash-shell-script-command-line-interface-z-shell-shell-rectangle-logo-commandline-interface-thumbnail.png"
-                              alt=""
-                            />
-                          </>
-                        ) : (
-                          ""
-                        )}
-                        <div>
-                          <h3 className="text-xl">{project.name}</h3>
-                          <p className="text-sm text-[gray]">
-                            {new Date(project.date).toDateString()}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex gap-2 mt-4 sm:mt-0 w-full sm:w-auto justify-center">
-                        <button
-                          onClick={() => {
-                            setIsEditModelShow(true);
-                            setEditProjectId(project._id);
-                            setName(project.name);
-                          }}
-                          className="btnNormal bg-blue-500 transition-all hover:bg-blue-600 w-full sm:w-auto"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => {
-                            deleteProject(project._id);
-                          }}
-                          className="btnNormal bg-red-500 transition-all hover:bg-red-600 w-full sm:w-auto"
-                        >
-                          Delete
-                        </button>
+                      {project.projLanguage === "python" ? (
+                        <>
+                          <img
+                            className="w-[130px] h-[100px] object-cover"
+                            src="https://images.ctfassets.net/em6l9zw4tzag/oVfiswjNH7DuCb7qGEBPK/b391db3a1d0d3290b96ce7f6aacb32b0/python.png"
+                            alt=""
+                          />
+                        </>
+                      ) : project.projLanguage === "javascript" ? (
+                        <>
+                          <img
+                            className="w-[130px] h-[100px] object-cover"
+                            src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+                            alt=""
+                          />
+                        </>
+                      ) : project.projLanguage === "cpp" ? (
+                        <>
+                          <img
+                            className="w-[130px] h-[100px] object-cover"
+                            src="https://upload.wikimedia.org/wikipedia/commons/3/32/C%2B%2B_logo.png"
+                            alt=""
+                          />
+                        </>
+                      ) : project.projLanguage === "c" ? (
+                        <>
+                          <img
+                            className="w-[130px] h-[100px] object-cover"
+                            src="https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png"
+                            alt=""
+                          />
+                        </>
+                      ) : project.projLanguage === "java" ? (
+                        <>
+                          <img
+                            className="w-[130px] h-[100px] object-cover"
+                            src="https://static-00.iconduck.com/assets.00/java-icon-1511x2048-6ikx8301.png"
+                            alt=""
+                          />
+                        </>
+                      ) : project.projLanguage === "bash" ? (
+                        <>
+                          <img
+                            className="w-[130px] h-[100px] object-cover"
+                            src="https://w7.pngwing.com/pngs/48/567/png-transparent-bash-shell-script-command-line-interface-z-shell-shell-rectangle-logo-commandline-interface-thumbnail.png"
+                            alt=""
+                          />
+                        </>
+                      ) : (
+                        ""
+                      )}
+                      <div>
+                        <h3 className="text-xl">{project.name}</h3>
+                        <p className="text-sm text-[gray]">
+                          {new Date(project.date).toDateString()}
+                        </p>
                       </div>
                     </div>
-                  </>
-                );
-              })
-            : "No Projects"}
+                    <div className="flex gap-2 mt-4 sm:mt-0 w-full sm:w-auto justify-center">
+                      <button
+                        onClick={() => {
+                          setIsEditModelShow(true);
+                          setEditProjectId(project._id);
+                          setName(project.name);
+                        }}
+                        className="btnNormal bg-blue-500 transition-all hover:bg-blue-600 w-full sm:w-auto"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => {
+                          deleteProject(project._id);
+                        }}
+                        className="btnNormal bg-red-500 transition-all hover:bg-red-600 w-full sm:w-auto"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </>
+              );
+            })
+          ) : (
+            <div className="min-h-screen flex flex-col">
+              <div className="flex-1 flex items-center justify-center">
+                <div className="flex flex-col items-center justify-center bg-gray-900 text-white rounded-2xl shadow-lg p-6">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-16 h-16 text-gray-400 mb-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9.75 3.5L3.5 9.75m0 0L9.75 16m-6.25-6.25h16.5m-6.25-6.25L20.5 9.75m0 0L14.25 16"
+                    />
+                  </svg>
+                  <h2 className="text-xl font-semibold">No Projects Found</h2>
+                  <p className="text-gray-400 mt-2">
+                    Start a new project and bring your ideas to life.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         {isCreateModelShow ? (
           <div
