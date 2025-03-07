@@ -75,7 +75,7 @@ const ForgeCopilot = () => {
 
       // const data = await response.json();
 
-      await new Promise((resolve) => setTimeout(resolve, 20000));
+      await new Promise((resolve) => setTimeout(resolve, 10000));
       const data = {
         openai: {
           generated_text:
@@ -131,56 +131,6 @@ const ForgeCopilot = () => {
     <>
       <NavBar />
       <div className="flex flex-col h-screen bg-gray-900 text-white">
-        {/* <div
-          className="flex-1 p-6 space-y-4 m-4 overflow-y-auto
-  [&::-webkit-scrollbar]:w-2
-  [&::-webkit-scrollbar-track]:rounded-full
-  [&::-webkit-scrollbar-track]:bg-gray-100
-  [&::-webkit-scrollbar-thumb]:rounded-full
-  [&::-webkit-scrollbar-thumb]:bg-gray-300
-  dark:[&::-webkit-scrollbar-track]:bg-neutral-700
-  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
-        >
-          {messages.map((msg, index) => (
-            <div
-              key={index}
-              className={`flex ${
-                msg.role === "user" ? "justify-end" : "justify-start"
-              }`}
-            >
-              <div
-                className={`p-4 rounded-lg max-w-3xl ${
-                  msg.role === "user"
-                    ? "bg-blue-600 text-white self-end"
-                    : "bg-gray-700 text-gray-200 self-start"
-                }`}
-              >
-                {msg.role === "bot" ? (
-                  <div className="prose prose-invert">
-                    <ReactMarkdown>{msg.content}</ReactMarkdown>
-                  </div>
-                ) : (
-                  <p>{msg.content}</p>
-                )}
-              </div>
-            </div>
-          ))}
-          {loading && (
-            <div className="flex justify-start">
-              <div className="p-4 rounded-lg bg-gray-700 text-gray-200">
-                Generating...
-              </div>
-            </div>
-          )}
-          {error && (
-            <div className="flex justify-start">
-              <div className="p-4 rounded-lg bg-red-600 text-white">
-                {error}
-              </div>
-            </div>
-          )}
-        </div> */}
-
         <div
           className="flex-1 p-6 space-y-4 m-4 overflow-y-auto max-h-[75vh] sm:max-h-[85vh] scrollbar-none
                  scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-700 
@@ -276,9 +226,9 @@ const ForgeCopilot = () => {
         </div>
 
         {/* Input Box */}
-        <div className="p-6 sm:p-9 m-4 sm:m-12 rounded-2xl my-auto bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 shadow-lg flex flex-col sm:flex-row items-center gap-4">
+        <div className="p-6 sm:p-9 m-4 sm:m-9 rounded-2xl my-auto bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 shadow-lg flex flex-col sm:flex-row items-center gap-4">
           <textarea
-            className="scro w-full flex-1 p-2 bg-gray-700 text-white rounded-lg border border-gray-600 
+            className="scro w-full flex-1 p-1 bg-gray-700 text-white rounded-lg border border-gray-600 
                focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none 
                placeholder-gray-400 transition-all duration-300 scrollbar-none"
             rows="2"

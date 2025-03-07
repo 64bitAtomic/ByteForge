@@ -356,7 +356,7 @@ const TutorialPage = () => {
         <NavBar />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
           <h1 className="text-center text-[#c792ea] text-3xl sm:text-5xl font-extrabold mb-4 sm:mb-6 tracking-wide">
-            {title.substring(1)} Tutorials
+            {title.substring(1)}
           </h1>
 
           {/* Loading Spinner */}

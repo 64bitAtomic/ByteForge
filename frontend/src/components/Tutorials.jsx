@@ -1,74 +1,3 @@
-// import { HiChevronDown, HiChevronUp } from "react-icons/hi";
-// import { Link } from "react-router-dom";
-// const Tutorials = ({
-//   setIsDropdownOpen,
-//   isDropdownOpen,
-//   tutorials,
-//   toggleTopic,
-//   expandedTopics,
-//   toggleMenu,
-// }) => {
-//   return (
-//     <li>
-//       <button
-//         className="w-full flex items-center justify-between py-2 transition-all hover:text-blue-500"
-//         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-//       >
-//         📖 Tutorials
-//         {isDropdownOpen ? (
-//           <HiChevronUp className="text-xl" />
-//         ) : (
-//           <HiChevronDown className="text-xl" />
-//         )}
-//       </button>
-
-//       {/* Tutorials List */}
-//       <ul
-//         className={`pl-4 text-sm transition-all duration-300 overflow-hidden ${
-//           isDropdownOpen ? "max-h-[500px]" : "max-h-0"
-//         }`}
-//       >
-//         {tutorials.map((tut) => (
-//           <li key={tut._id} className="mt-2">
-//             {/* Main Tutorial Name */}
-//             <button
-//               className="w-full flex items-center justify-between py-1 text-white transition-all hover:text-blue-400"
-//               onClick={() => toggleTopic(tut._id)}
-//             >
-//               {tut.name}
-//               {expandedTopics[tut._id] ? (
-//                 <HiChevronUp className="text-lg" />
-//               ) : (
-//                 <HiChevronDown className="text-lg" />
-//               )}
-//             </button>
-
-//             {/* Subtopics */}
-//             {expandedTopics[tut._id] && (
-//               <ul className="pl-4 mt-1">
-//                 {tut.topics.map((topic) => (
-//                   <li key={topic._id}>
-//                     <Link
-//                       className="block py-1 text-gray-300 transition-all hover:text-blue-300"
-//                       to={"/:" + tut.name + "/:" + topic.title}
-//                       onClick={toggleMenu}
-//                     >
-//                       - {topic.title}
-//                     </Link>
-//                   </li>
-//                 ))}
-//                 <li className="text-gray-500 text-sm italic mt-1">More...</li>
-//               </ul>
-//             )}
-//           </li>
-//         ))}
-//       </ul>
-//     </li>
-//   );
-// };
-
-// export default Tutorials;
-
 import { HiChevronDown, HiChevronUp, HiCode } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
@@ -174,9 +103,6 @@ const Tutorials = ({
                     </Link>
                   </li>
                 ))}
-                <li className="text-gray-500 text-xs italic mt-1 px-3">
-                  More...
-                </li>
               </ul>
             )}
           </li>
@@ -187,61 +113,3 @@ const Tutorials = ({
 };
 
 export default Tutorials;
-
-// <li>
-//             <button
-//               className="w-full flex items-center justify-between py-2 transition-all hover:text-blue-500"
-//               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-//             >
-//               📖 Tutorials
-//               {isDropdownOpen ? (
-//                 <HiChevronUp className="text-xl" />
-//               ) : (
-//                 <HiChevronDown className="text-xl" />
-//               )}
-//             </button>
-
-//             {/* Tutorials List */}
-//             <ul
-//               className={`pl-4 text-sm transition-all duration-300 overflow-hidden ${
-//                 isDropdownOpen ? "max-h-[500px]" : "max-h-0"
-//               }`}
-//             >
-//               {tutorials.map((tut) => (
-//                 <li key={tut._id} className="mt-2">
-//                   {/* Main Tutorial Name */}
-//                   <button
-//                     className="w-full flex items-center justify-between py-1 text-white transition-all hover:text-blue-400"
-//                     onClick={() => toggleTopic(tut._id)}
-//                   >
-//                     {tut.name}
-//                     {expandedTopics[tut._id] ? (
-//                       <HiChevronUp className="text-lg" />
-//                     ) : (
-//                       <HiChevronDown className="text-lg" />
-//                     )}
-//                   </button>
-
-//                   {/* Subtopics */}
-//                   {expandedTopics[tut._id] && (
-//                     <ul className="pl-4 mt-1">
-//                       {tut.topics.map((topic) => (
-//                         <li key={topic._id}>
-//                           <Link
-//                             className="block py-1 text-gray-300 transition-all hover:text-blue-300"
-//                             to={"/:" + tut.name + "/:" + topic.title}
-//                             onClick={toggleMenu}
-//                           >
-//                             - {topic.title}
-//                           </Link>
-//                         </li>
-//                       ))}
-//                       <li className="text-gray-500 text-sm italic mt-1">
-//                         More...
-//                       </li>
-//                     </ul>
-//                   )}
-//                 </li>
-//               ))}
-//             </ul>
-//           </li>

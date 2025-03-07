@@ -20,7 +20,6 @@ const NavBar = () => {
           {isOpen ? <HiX /> : <HiOutlineMenu />}
         </button>
       </div>
-
       {/* Sidebar Component */}
       <Sidebar isOpen={isOpen} toggleMenu={toggleMenu} />
     </nav>

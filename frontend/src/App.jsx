@@ -9,6 +9,7 @@ import IDE from "./pages/IDE";
 import Home from "./pages/Home";
 import ForgeCopilot from "./pages/ForgeCopilot";
 import About from "./components/About";
+import Contact from "./components/Contact";
 const App = () => {
   return (
     <>
@@ -39,6 +40,7 @@ const RouterHandler = () => {
         <Route path="/:language/:title" element={<TutorialPage />} />
         <Route path="/ai" element={<ForgeCopilot />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </>
   );
